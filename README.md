@@ -1,11 +1,21 @@
 chikka
 ======
 
-A Ruby gem for consuming the [Chikka API](https://api.chikka.com)
+A Ruby gem for consuming the [Chikka API](https://api.chikka.com) for sending mesages
 
 ## Installation
 
     $ gem install chikka
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b new-feature`)
+3. Commit your changes (`git commit -am 'Added awesome new features'`)
+4. Push to the branch (`git push origin new-feature`)
+5. Create new Pull Request
+6. ???
+7. Profit
 
 ## MIT Open Source License
 
@@ -14,3 +24,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Products using this Gem
+Originally created for [Booky -Manila Restaurants](http://ph.phonebooky.com/)
