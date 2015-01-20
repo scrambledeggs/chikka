@@ -3,6 +3,10 @@ chikka
 
 A Ruby gem for consuming the [Chikka API](https://api.chikka.com) for sending mesages
 
+## Requirements
+
+  Ruby 2.x.x
+
 ## Installation
 
     $ gem install chikka
