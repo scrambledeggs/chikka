@@ -31,9 +31,9 @@ A message_id parameter can be specified and used for [delivery notifications](ht
 client.send_message(message:'This is a test', mobile_number:'639171234567', message_id:'75c09eb7581588f578624ad9538cc6d3')
 ```
 
-For replies, the #send_reply method can be used. It is similar to the #send_message call but accepts request_id and request_cost
+For replies, the #send_reply method can be used. It is similar to the #send_message call but accepts request_id and request_cost. request_cost is optional and it defaults to 'FREE'
 ```ruby
-client.send_message(message:'This is a test', mobile_number:'639171234567', request_id: '504830303...83137', request_cost: 'P5.00')
+client.send_reply(message:'This is a test', mobile_number:'639171234567', request_id: '504830303...83137', request_cost: 'P5.00')
 ```
 
 ## Production environment variables
