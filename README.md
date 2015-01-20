@@ -11,6 +11,39 @@ A Ruby gem for consuming the [Chikka API](https://api.chikka.com) for sending me
 
     $ gem install chikka
 
+## Usage
+
+Construct a Chikka::Client object and use the #send_message method to
+send a message. For example:
+
+```ruby
+require 'nexmo'
+
+client = Chikka::Client.new(client_id:'key', secret_key:'secret', shortcode:'shortcode')
+client.send_message(message:'This is a test', mobile_number:'639171234567')
+```
+
+By default, the client creates a random unique 32 character string as the message_id.
+
+A message_id parameter can be specified and used for [delivery notifications](https://api.chikka.com/docs/handling-messages#delivery-notifications)
+
+```ruby
+client.send_message(message:'This is a test', mobile_number:'639171234567', message_id:'75c09eb7581588f578624ad9538cc6d3')
+```
+
+For replies, the #send_reply method can be used. It is similar to the #send_message call but accepts request_id and request_cost
+```ruby
+client.send_message(message:'This is a test', mobile_number:'639171234567', request_id: '504830303...83137', request_cost: 'P5.00')
+```
+
+## Production environment variables
+
+Best practice for storing credentials for external services in production is
+to use environment variables, as described by [12factor.net/config](http://12factor.net/config).
+Client::Client defaults to extracting the client_id, secret_key and shortcode it needs from the
+CHIKKA_CLIENT_ID,  CHIKKA_SECRET_KEY and CHIKKA_SHORTCODE environment variables if the
+options were not specified explicitly.
+
 ## Contributing
 
 1. Fork it
@@ -29,5 +62,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Products using this Gem
-Originally created for [Booky -Manila Restaurants](http://ph.phonebooky.com/)
+## Acknowledgement
+Originally created for use [Booky -Manila Restaurants](http://ph.phonebooky.com/)
+
+## Copyright
+2014 [Scrambled Eggs Pte Ltd](http://www.eggsapps.com)
