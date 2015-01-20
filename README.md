@@ -17,7 +17,7 @@ Construct a Chikka::Client object and use the #send_message method to
 send a message. For example:
 
 ```ruby
-require 'nexmo'
+require 'chikka'
 
 client = Chikka::Client.new(client_id:'key', secret_key:'secret', shortcode:'shortcode')
 client.send_message(message:'This is a test', mobile_number:'639171234567')
