@@ -1,4 +1,4 @@
 ## TODO List
 
-1. Need to test send_reply method
-2. Need to add documentation
+1. Test send_reply method
+2. Add documentation for classes
