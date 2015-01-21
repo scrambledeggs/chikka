@@ -51,7 +51,7 @@ module Chikka
 
     def send_reply(params = {})
       message_id = params.fetch(:message_id) { generate_message_id }
-      request_cost = params.fetch(:message_id) { "FREE" }
+      request_cost = params.fetch(:request_cost) { "FREE" }
       post_params = DEFAULT_PARAMS.merge({
         message_type: "REPLY",
         mobile_number: params[:mobile_number],
