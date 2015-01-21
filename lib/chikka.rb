@@ -60,6 +60,8 @@ module Chikka
         request_id: params[:request_id],
         request_cost: request_cost
       })
+      body = URI.encode_www_form(post_params)
+      parse @http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'})
     end
 
     private
