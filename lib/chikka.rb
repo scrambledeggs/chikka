@@ -75,7 +75,7 @@ module Chikka
         when Net::HTTPSuccess
           response_obj
         when Net::HTTPBadRequest
-          raise IncompleteParametersError.new(message=response_obj.message)
+          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{http_response})
         when Net::HTTPUnauthorized
           raise AuthenticationError
         else
