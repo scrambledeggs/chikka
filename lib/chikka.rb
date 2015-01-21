@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'net/http'
-require 'SecureRandom'
+require 'securerandom'
 
 module Chikka
 
