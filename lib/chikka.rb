@@ -29,8 +29,8 @@ module Chikka
       @shortcode = options.fetch(:shortcode) { ENV.fetch('CHIKKA_SHORTCODE') }
 
       @host = options.fetch(:host) { 'post.chikka.com' }
-      @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
-      @http.use_ssl = true
+      @http = Net::HTTP.new(@host, 8843)
+      # @http.use_ssl = true
 
       DEFAULT_PARAMS[:client_id] = @client_id
       DEFAULT_PARAMS[:secret_key] = @secret_key
@@ -75,11 +75,11 @@ module Chikka
         when Net::HTTPSuccess
           response_obj
         when Net::HTTPBadRequest
-          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{http_response}")
+          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj}")
         when Net::HTTPUnauthorized
-          raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{http_response}")
+          raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj}")
         else
-          raise Error, "Unexpected HTTP response (code=#{http_response.code}) HTTP_RESP: #{http_response}"
+          raise Error, "Unexpected HTTP response (code=#{http_response.code}) HTTP_RESP: #{response_obj}"
         end
       end
   end
