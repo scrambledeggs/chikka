@@ -29,8 +29,8 @@ module Chikka
       @shortcode = options.fetch(:shortcode) { ENV.fetch('CHIKKA_SHORTCODE') }
 
       @host = options.fetch(:host) { 'post.chikka.com' }
-      @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
-      # @http.use_ssl = true
+      @http = Net::HTTP.new(@host, 8843)
+      @http.use_ssl = true
 
       DEFAULT_PARAMS[:client_id] = @client_id
       DEFAULT_PARAMS[:secret_key] = @secret_key

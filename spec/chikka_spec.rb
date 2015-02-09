@@ -8,10 +8,7 @@ describe 'Chikka::Client' do
     @smsapi_url = "https://post.chikka.com/smsapi/request'"
     @form_urlencoded_data = {body: /(.+?)=(.+?)(&(.+?)=(.+?))+/, headers: {'Content-Type' => 'application/x-www-form-urlencoded'}}
     # @client = Chikka::Client.new(client_id:'key', secret_key:'secret', shortcode:'shortcode')
-    # @client = Chikka::Client.new()
-    @client = Chikka::Client.new(client_id: 'ec4f59fb671e8d7437e508da497683f1d5a230ab104f300a29d77e7ffc7b1e52',
-  secret_key:'7ef5fc22cb9131954ec54d9e2a13c0a274217c9eefc8fd00c02f82f0baad0d4b',
-  shortcode:'2929026659')
+    @client = Chikka::Client.new()
   end
 
   describe 'http method' do
