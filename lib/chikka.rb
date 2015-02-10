@@ -11,11 +11,12 @@ module Chikka
   class AuthenticationError < Error; end
 
   class Response
-    attr_reader :status, :message
+    attr_reader :status, :message, :description
     def initialize(http_response)
       r = JSON.parse(http_response.body)
       @status = r['status']
       @message = r['message']
+      @description = r['description']
     end
   end
 
@@ -71,15 +72,15 @@ module Chikka
 
       def parse(http_response)
         response_obj = Response.new(http_response)
-        case http_response
-        when Net::HTTPSuccess
+        case response_obj.status
+        when 200
           response_obj
-        when Net::HTTPBadRequest
-          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj}")
-        when Net::HTTPUnauthorized
-          raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj}")
+        when 400
+          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
+        when 401
+          raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
         else
-          raise Error, "Unexpected HTTP response (code=#{http_response.code}) HTTP_RESP: #{response_obj}"
+          raise Error.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
         end
       end
   end
