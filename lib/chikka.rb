@@ -11,12 +11,13 @@ module Chikka
   class AuthenticationError < Error; end
 
   class Response
-    attr_reader :status, :message, :description
-    def initialize(http_response)
+    attr_reader :status, :message, :description, :message_id
+    def initialize(http_response, message_id)
       r = JSON.parse(http_response.body)
       @status = r['status']
       @message = r['message']
       @description = r['description']
+      @message_id = message_id
     end
   end
 
@@ -47,7 +48,7 @@ module Chikka
         message_id: message_id
       })
       body = URI.encode_www_form(post_params)
-      parse @http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'})
+      parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), message_id)
     end
 
     def send_reply(params = {})
@@ -62,7 +63,7 @@ module Chikka
         request_cost: request_cost
       })
       body = URI.encode_www_form(post_params)
-      parse @http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'})
+      parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), message_id)
     end
 
     private
@@ -70,8 +71,8 @@ module Chikka
         SecureRandom.hex
       end
 
-      def parse(http_response)
-        response_obj = Response.new(http_response)
+      def parse(http_response, message_id)
+        response_obj = Response.new(http_response, message_id)
         case response_obj.status
         when 200
           response_obj
