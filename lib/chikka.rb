@@ -40,16 +40,16 @@ module Chikka
     end
 
     def send_message(params = {})
-      message_id = params.fetch(:message_id) { generate_message_id }
+      params[:message_id] = params.fetch(:message_id) { generate_message_id }
 
       message_type = "SEND"
       if params[:request_id]
         message_type = "REPLY"
+        params[:request_cost] = params.fetch(:resquest_cost) { "FREE" }
       end
 
       post_params = DEFAULT_PARAMS.merge({
-        message_type: "SEND",
-        message_id: message_id
+        message_type: message_type
       }.merge(params))
 
       body = URI.encode_www_form(post_params)
@@ -57,6 +57,7 @@ module Chikka
     end
 
     def send_reply(params = {})
+      warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and past a request_id (and optional request cost)"
       send_message(params)
     end
 
