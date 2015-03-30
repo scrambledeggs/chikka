@@ -40,7 +40,7 @@ client.send_reply(message:'This is a test', mobile_number:'639171234567', reques
 
 Best practice for storing credentials for external services in production is
 to use environment variables, as described by [12factor.net/config](http://12factor.net/config).
-Client::Client defaults to extracting the client_id, secret_key and shortcode it needs from the
+Chikka::Client defaults to extracting the client_id, secret_key and shortcode it needs from the
 CHIKKA_CLIENT_ID,  CHIKKA_SECRET_KEY and CHIKKA_SHORTCODE environment variables if the
 options were not specified explicitly.
 

@@ -41,29 +41,23 @@ module Chikka
 
     def send_message(params = {})
       message_id = params.fetch(:message_id) { generate_message_id }
+
+      message_type = "SEND"
+      if params[:request_id]
+        message_type = "REPLY"
+      end
+
       post_params = DEFAULT_PARAMS.merge({
         message_type: "SEND",
-        mobile_number: params[:mobile_number],
-        message: params[:message],
         message_id: message_id
-      })
+      }.merge(params))
+
       body = URI.encode_www_form(post_params)
       parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), message_id)
     end
 
     def send_reply(params = {})
-      message_id = params.fetch(:message_id) { generate_message_id }
-      request_cost = params.fetch(:request_cost) { "FREE" }
-      post_params = DEFAULT_PARAMS.merge({
-        message_type: "REPLY",
-        mobile_number: params[:mobile_number],
-        message: params[:message],
-        message_id: message_id,
-        request_id: params[:request_id],
-        request_cost: request_cost
-      })
-      body = URI.encode_www_form(post_params)
-      parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), message_id)
+      send_message(params)
     end
 
     private
