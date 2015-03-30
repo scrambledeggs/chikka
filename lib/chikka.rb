@@ -53,7 +53,7 @@ module Chikka
       }.merge(params))
 
       body = URI.encode_www_form(post_params)
-      parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), message_id)
+      parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), params[:message_id])
     end
 
     def send_reply(params = {})
