@@ -71,8 +71,6 @@ module Chikka
         case response_obj.status
         when 200
           response_obj
-        when 400
-          raise IncompleteParametersError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
         when 401
           raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
         else
