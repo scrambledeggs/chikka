@@ -6,7 +6,7 @@ module Chikka
 
   class Error < StandardError; end
 
-  class IncompleteParametersError < Error; end
+  class BadRequestError < Error; end
 
   class AuthenticationError < Error; end
 
@@ -72,9 +72,11 @@ module Chikka
         when 200
           response_obj
         when 401
-          raise AuthenticationError.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
+          raise AuthenticationError.new(message=response_obj.description)
+        when 400
+          raise BadRequestError.new(message = response_obj.description)
         else
-          raise Error.new(message="#{response_obj.message} HTTP_RESP: #{response_obj.description}")
+          raise Error.new(message=response_obj.description)
         end
       end
   end
