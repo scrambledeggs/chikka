@@ -29,6 +29,7 @@ module Chikka
       @client_id= options.fetch(:client_id) { ENV.fetch('CHIKKA_CLIENT_ID') }
       @secret_key = options.fetch(:secret_key) { ENV.fetch('CHIKKA_SECRET_KEY') }
       @shortcode = options.fetch(:shortcode) { ENV.fetch('CHIKKA_SHORTCODE') }
+      @mask = options.fetch(:mask) { ENV.fetch('CHIKKA_MASK') } if options.has_key?(:mask)
 
       @host = options.fetch(:host) { 'post.chikka.com' }
       @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
@@ -37,6 +38,7 @@ module Chikka
       DEFAULT_PARAMS[:client_id] = @client_id
       DEFAULT_PARAMS[:secret_key] = @secret_key
       DEFAULT_PARAMS[:shortcode] = @shortcode
+      DEFAULT_PARAMS[:mask] = @mask if options.has_key?(:mask)
     end
 
     def send_message(params = {})
@@ -57,7 +59,7 @@ module Chikka
     end
 
     def send_reply(params = {})
-      warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and past a request_id (and optional request cost)"
+      warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and pass a request_id (and optional request cost)"
       send_message(params)
     end
 
@@ -72,7 +74,7 @@ module Chikka
         when 200
           response_obj
         when 401
-          raise AuthenticationError.new(message=response_obj.description)
+          raise AuthenticationError.new(message= response_obj.description)
         when 400
           raise BadRequestError.new(message = response_obj.description)
         else
