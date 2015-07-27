@@ -29,7 +29,7 @@ module Chikka
       @client_id= options.fetch(:client_id) { ENV.fetch('CHIKKA_CLIENT_ID') }
       @secret_key = options.fetch(:secret_key) { ENV.fetch('CHIKKA_SECRET_KEY') }
       @shortcode = options.fetch(:shortcode) { ENV.fetch('CHIKKA_SHORTCODE') }
-      @mask = options.fetch(:mask) { ENV.fetch('CHIKKA_MASK') } if options.has_key?(:mask)
+      @mask = options.fetch(:mask) { ENV.fetch('CHIKKA_MASK') } if ENV.has_key?('CHIKKA_MASK') || options.has_key?(:mask)
 
       @host = options.fetch(:host) { 'post.chikka.com' }
       @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
@@ -38,7 +38,7 @@ module Chikka
       DEFAULT_PARAMS[:client_id] = @client_id
       DEFAULT_PARAMS[:secret_key] = @secret_key
       DEFAULT_PARAMS[:shortcode] = @shortcode
-      DEFAULT_PARAMS[:mask] = @mask if options.has_key?(:mask)
+      DEFAULT_PARAMS[:mask] = @mask
     end
 
     def send_message(params = {})
