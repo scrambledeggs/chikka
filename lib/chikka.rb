@@ -56,11 +56,6 @@ module Chikka
       parse(@http.post(SMSAPI_PATH, body, {'Content-Type' => 'application/x-www-form-urlencoded'}), params[:message_id])
     end
 
-    def send_reply(params = {})
-      # warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and past a request_id (and optional request cost)"
-      send_message(params)
-    end
-
     private
       def generate_message_id
         SecureRandom.hex
