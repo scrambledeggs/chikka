@@ -57,7 +57,7 @@ module Chikka
     end
 
     def send_reply(params = {})
-      warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and past a request_id (and optional request cost)"
+      # warn "[DEPRECATION] `send_reply` is being deprecated. Please use `send_message` instead and past a request_id (and optional request cost)"
       send_message(params)
     end
 
