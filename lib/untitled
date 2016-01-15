@@ -1,0 +1,17 @@
+require 'rubygems'
+require 'net/http'
+require 'securerandom'
+
+@http = Net::HTTP.new('post.chikka.com', Net::HTTP.https_default_port)
+@http.use_ssl = true
+
+post_params = {
+  message: 'Hello from Booky! Just to tell you that new (much sexier) Prime member discounts of P100-P500 start today at over 200 restos. Open the app!',
+  mask: 'Booky',
+  send_dn: 'false',
+  sms_footer: 'false'
+}
+
+body = URI.encode_www_form(post_params)
+
+@http.post('/sms/outbox/blast', body, {'Content-Type' => 'application/x-www-form-urlencoded'}), params[:message_id]
