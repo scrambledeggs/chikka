@@ -32,7 +32,7 @@ module Chikka
       @mask = options.fetch(:mask) { ENV.fetch('CHIKKA_MASK') } if ENV.has_key?('CHIKKA_MASK') || options.has_key?(:mask)
 
       # @host = options.fetch(:host) { 'post.chikka.com' }
-      @host = options.fetch(:host) { '112.199.82.34' }
+      @host = options.fetch(:host)
       @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
       @http.use_ssl = true
 
