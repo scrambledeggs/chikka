@@ -31,8 +31,7 @@ module Chikka
       @shortcode = options.fetch(:shortcode) { ENV.fetch('CHIKKA_SHORTCODE') }
       @mask = options.fetch(:mask) { ENV.fetch('CHIKKA_MASK') } if ENV.has_key?('CHIKKA_MASK') || options.has_key?(:mask)
 
-      # @host = options.fetch(:host) { 'post.chikka.com' }
-      @host = options.fetch(:host)
+      @host = options.fetch(:host) { 'post.chikka.com' }
       @http = Net::HTTP.new(@host, Net::HTTP.https_default_port)
       @http.use_ssl = true
 
