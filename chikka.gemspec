@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'chikka'
-  s.version = '0.2.1'
+  s.version = '0.2.2'
   s.date = '2015-11-21'
   s.summary = 'A ruby interface to the Chikka SMS API'
   s.authors = ["Andrei Navarro"]
