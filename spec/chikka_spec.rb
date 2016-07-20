@@ -9,7 +9,7 @@ describe 'Chikka::Client' do
     @form_urlencoded_data = {body: /(.+?)=(.+?)(&(.+?)=(.+?))+/, headers: {'Content-Type' => 'application/x-www-form-urlencoded'}}
     # @client = Chikka::Client.new(client_id:'key', secret_key:'secret', shortcode:'shortcode')
     @client = Chikka::Client.new()
-  end
+   end
 
   describe 'http method' do
     it 'returns a net http object that uses ssl' do
