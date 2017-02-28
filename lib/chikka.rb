@@ -47,7 +47,7 @@ module Chikka
       message_type = "SEND"
       if params[:request_id]
         message_type = "REPLY"
-        params[:request_cost] = params.fetch(:resquest_cost) { "FREE" }
+        params[:request_cost] = params.fetch(:request_cost) { "FREE" }
       end
 
       post_params = DEFAULT_PARAMS.merge({
